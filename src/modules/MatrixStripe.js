@@ -35,7 +35,7 @@ class MatrixStripe extends Component {
                 code: Math.random()>0.5? '0' : '1',
                 opacity: 1,
             };
-        newCode.forEach(code=>code.opacity = code.opacity -0.02)
+        newCode.forEach(code=>code.opacity = code.opacity -0.04)
         this.setState({
             matrixCode: newCode,
             currentPosition: this.state.currentPosition + 1
@@ -53,7 +53,7 @@ class MatrixStripe extends Component {
     }
 
     timer(){
-        setInterval(()=>this.generateCode(), 100);
+        setInterval(()=>this.generateCode(), 80 + parseInt(Math.random()*300));
     }
 
     render(){
@@ -73,7 +73,7 @@ MatrixStripe.propTypes ={
 };
 
 MatrixStripe.defaultProps = {
-    maxHeight: 40,
+    maxHeight: 30,
     id: 0,
     run: true
 };

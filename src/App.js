@@ -29,7 +29,7 @@ class App extends Component {
             })
         } else if (event.key === "Control"){
             this.setState({
-                matrix: true
+                matrix: !this.state.matrix
             })
         } else if (event.key === "Enter"){
             this.setState({
