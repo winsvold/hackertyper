@@ -1,0 +1,30 @@
+@import "popup.less";
+@import "matrix.less";
+
+.App {
+  padding: 2em;
+  font-family: monospace;
+  color: #fff4c2;
+  font-size: 1.7em;
+  line-height: 1.4em;
+  bottom: 0;
+  top: 0;
+  width: 90%;
+  background-color: black;
+  position: absolute;
+}
+
+.console {
+  p {
+    display: inline;
+  }
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+

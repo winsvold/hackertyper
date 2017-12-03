@@ -1,0 +1,31 @@
+.popup {
+  position: fixed;
+  text-transform: uppercase;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 40%;
+  white-space: nowrap;
+  padding: 0 1em;
+  font-family: inherit;
+  font-weight: bolder;
+  font-size: 2em;
+  border-color: #fff4c2;
+  border-style: double;
+  border-width: 0.4em;
+}
+
+.granted {
+  background-color: green;
+  .popup;
+  h2{
+    animation: blinker 2s linear infinite;
+  }
+}
+
+.denied {
+  background-color: red;
+  .popup;
+  h2 {
+    animation: blinker 0.5s linear infinite;
+  }
+}

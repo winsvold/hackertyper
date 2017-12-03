@@ -1,21 +1,39 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './App.css';
-import {codeGetter} from "./code";
-import Granted from "./Granted";
-import Denied from "./Denied";
+import './css/App.css';
+import {codeGetter} from "./resources/code";
+import Granted from "./modules/Granted";
+import Denied from "./modules/Denied";
+import Matrix from "./modules/Matrix";
 
 class App extends Component {
 
+    constructor(props){
+        super(props);
+        this.state ={
+            popUp: "",
+            loadPopUp: "",
+            matrix: false
+        };
+    }
+
     handleKeyDown(event) {
         console.log(event);
-        if (event.key === "Enter") {
+        if (event.key === "1") {
             this.setState({
-                popUp: "granted"
+                loadPopUp: "granted"
             })
-        } else if (event.key === "Backspace"){
+        } else if (event.key === "2"){
             this.setState({
-                popUp: "denied"
+                loadPopUp: "denied"
+            })
+        } else if (event.key === "Control"){
+            this.setState({
+                matrix: true
+            })
+        } else if (event.key === "Enter"){
+            this.setState({
+                popUp: this.state.loadPopUp
             })
         } else if (event.key === "Shift"){
             this.setState({
@@ -59,12 +77,14 @@ class App extends Component {
         } else if (this.state.popUp === "denied"){
             popup = <Denied />
         }
+        const matrix = this.state.matrix ? <Matrix /> : '';
         return (
             <div className="App">
                 <div className="console">
                     {this.getText()}
                     <span className="blink_me">|</span>
                 </div>
+                {matrix}
                 <div style={{ float:"left", clear: "both" }}
                      ref={(el) => { this.messagesEnd = el; }}></div>
                 {popup}
