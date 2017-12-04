@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './css/App.css';
-import {codeGetter} from "./resources/code";
-import Granted from "./modules/Granted";
-import Denied from "./modules/Denied";
-import Matrix from "./modules/Matrix";
+import {codeGetter} from "./resources/codeSample";
+import Granted from "./modules/popup/Granted";
+import Denied from "./modules/popup/Denied";
+import Matrix from "./modules/matrix/Matrix";
 
 class App extends Component {
 
