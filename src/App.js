@@ -4,6 +4,7 @@ import './css/App.css';
 import {codeGetter} from "./resources/codeSample";
 import Granted from "./modules/popup/Granted";
 import Denied from "./modules/popup/Denied";
+import InitializeMatrix from "./modules/matrix/autoScaleMatrix";
 import Matrix from "./modules/matrix/Matrix";
 
 class App extends Component {
@@ -77,7 +78,7 @@ class App extends Component {
         } else if (this.state.popUp === "denied"){
             popup = <Denied />
         }
-        const matrix = this.state.matrix ? <Matrix /> : '';
+        const matrix = this.state.matrix ? <InitializeMatrix /> : '';
         return (
             <div className="App">
                 <div className="console">

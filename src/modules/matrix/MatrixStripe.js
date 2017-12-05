@@ -8,7 +8,10 @@ class MatrixStripe extends Component {
         this.state = {
             on: false,
             currentPosition: 0,
-            matrixCode: [{}],
+            matrixCode: [{
+                value: '\u00a0', //Space
+                opacity: 0
+            }],
             run: false
         };
     }
@@ -22,8 +25,15 @@ class MatrixStripe extends Component {
         });
     }
 
+    timer(){
+        const FRAME_RATE_MIN_TIME = 80;
+        const FRAME_RATE_DELTA_TIME = 300;
+        const DELAY = FRAME_RATE_MIN_TIME + parseInt(Math.random() * FRAME_RATE_DELTA_TIME);
+        setInterval(() => this.generateCode(), DELAY);
+    }
+
     generateCode(){
-        if(this.state.currentPosition > this.props.maxHeight){
+        if(this.state.currentPosition > this.props.antallBits){
             this.setState({
                 currentPosition: 0
             })
@@ -32,50 +42,55 @@ class MatrixStripe extends Component {
         const newCode = currentCode;
         newCode[this.state.currentPosition] =
             {
-                code: Math.random()>0.5? '0' : '1',
+                value: this.props.valueGenerator(),
                 opacity: 1,
             };
-        newCode.forEach(code=>code.opacity = code.opacity < 0 ? 0 : code.opacity -0.04);
+        const OPACITY_DECAY = 0.04;
+        newCode.forEach(bit=>bit.opacity = bit.opacity <= 0 ? 0 : bit.opacity - OPACITY_DECAY);
         this.setState({
             matrixCode: newCode,
             currentPosition: this.state.currentPosition + 1
         });
     }
 
-    renderCodeSnippet(){
+    getCodeSnippet(){
         const codeArray = this.state.matrixCode;
-        if(codeArray.length > 2){
-            return codeArray.map((code)=>
-                <p style={{opacity:code.opacity}}>{code.code}</p>
-            )
-        }
-        return "\u00a0";
-    }
-
-    timer(){
-        setInterval(()=>this.generateCode(), 80 + parseInt(Math.random()*300));
+        const HEIGHT_PERCENTAGE = this.props.bitHeightPX + 'px';
+        const FONT_SIZE = this.props.bitHeightPX + 'px';
+        return codeArray.map((bit)=>
+                <p style={
+                    {
+                        opacity: bit.opacity,
+                        fontSize: FONT_SIZE,
+                        lineHeight: HEIGHT_PERCENTAGE
+                    }
+                }>{bit.value}</p>
+        )
     }
 
     render(){
         return(
-        <div className="matrix-stripe">
-            {this.renderCodeSnippet()}
+        <div className="matrix-stripe" style={{width: this.props.bitWidthPercentage + '%'}}>
+            {this.getCodeSnippet()}
         </div>
         );
     }
-
 }
 
 MatrixStripe.propTypes ={
-    maxHeight: PT.number,
-    id: PT.number,
-    run: PT.bool
+    antallBits: PT.number,
+    run: PT.bool,
+    bitWidthPercentage: PT.number,
+    bitHeightPX: PT.number,
+    valueGenerator: PT.func
 };
 
 MatrixStripe.defaultProps = {
-    maxHeight: 30,
-    id: 0,
-    run: true
+    antallBits: 30,
+    run: true,
+    bitWidthPercentage: 2,
+    bitHeightPX: 36,
+    valueGenerator: () => Math.random() > 0.5 ? '0' : '1'
 };
 
 export default MatrixStripe;

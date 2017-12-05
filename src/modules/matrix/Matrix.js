@@ -17,8 +17,15 @@ class Matrix extends Component {
     }
 
     matrixStriper(){
-        return this.state.matrixStriper.map((stripe, index)=>(
-            <MatrixStripe id={index} key={`matrix-stripe-${index}`} run={stripe} />
+        return this.state.matrixStriper.map((stripe, index) => (
+            <MatrixStripe
+                antallBits={this.props.antallBits}
+                bitHeightPX={this.props.bitHeightPX}
+                bitWidthPercentage={this.props.bitWidthPercentage}
+                run={stripe}
+                key={`matrix-stripe-${index}`}
+                valueGenerator={this.props.valueGenerator}
+            />
         ));
     }
 
@@ -32,10 +39,10 @@ class Matrix extends Component {
         }
     }
 
-
     render(){
+        console.log(this.props);
         return(
-            <div className="matrix">
+            <div className="matrix" id="matrix">
                 {this.matrixStriper()}
             </div>
         );
@@ -44,10 +51,18 @@ class Matrix extends Component {
 
 Matrix.propTypes = {
     antallStriper: PT.number,
+    antallBits: PT.number,
+    bitHeightPX: PT.number,
+    bitWidthPercentage: PT.number,
+    valueGenerator: PT.func
 };
 
 Matrix.defaultProps = {
     antallStriper: 50,
+    antallBits: 35,
+    bitHeightPX: 36,
+    bitWidthPercentage: 2,
+    valueGenerator: () => Math.random() > 0.5 ? '0' : '1'
 };
 
 export default Matrix;
