@@ -51,7 +51,7 @@ class App extends Component {
     componentWillMount(){
         document.addEventListener("keydown", this.handleKeyDown.bind(this));
         this.setState({
-            sizeOfText: 5
+            sizeOfText: 0
         })
     }
 
