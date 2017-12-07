@@ -2,11 +2,11 @@ How to hack: Write some random stuff to create awesome hacker-code.
 
 Features:
 
-1 + Enter = Access Granted
-2 + Enter = Access Denied
-3 + Enter = Upload Bar then Access Granted
-Shift = clear pop-ups
-Ctrl = toggle Matrix
+1 + Enter = Access Granted <br />
+2 + Enter = Access Denied <br />
+3 + Enter = Upload Bar then Access Granted <br />
+Shift = clear pop-ups <br />
+Ctrl = toggle Matrix <br />
 
 http://winsvold.github.io/HackerTyper/
 
