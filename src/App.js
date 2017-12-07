@@ -6,6 +6,7 @@ import Granted from "./modules/popup/Granted";
 import Denied from "./modules/popup/Denied";
 import InitializeMatrix from "./modules/matrix/autoScaleMatrix";
 import Matrix from "./modules/matrix/Matrix";
+import ProgressBar from "./modules/progressBar/progressbar";
 
 class App extends Component {
 
@@ -28,6 +29,10 @@ class App extends Component {
             this.setState({
                 loadPopUp: "denied"
             })
+        } else if (event.key === "3"){
+            this.setState({
+                loadPopUp: "progressBar"
+            })
         } else if (event.key === "Control"){
             this.setState({
                 matrix: !this.state.matrix
@@ -40,8 +45,13 @@ class App extends Component {
             this.setState({
                 popUp: ""
             })
+        } else if (event.key === "Delete" || event.key === "Backspace"){
+            const newSizeOfText = parseInt(this.state.sizeOfText - Math.random() * 8);
+            this.setState({
+                sizeOfText: newSizeOfText
+            })
         } else {
-            const newSizeOfText = parseInt(this.state.sizeOfText + Math.random() * 10);
+            const newSizeOfText = parseInt(this.state.sizeOfText + Math.random() * 8);
             this.setState({
                 sizeOfText: newSizeOfText
             })
@@ -65,7 +75,7 @@ class App extends Component {
     };
 
     getText(){
-        const text = codeGetter(this.state.sizeOfText).split(" ").join("\u00a0").split("\n").map((item, key) => {
+        const text = codeGetter(this.state.sizeOfText).split(" ").join("\u00a0").split("\t").join("\u00a0".repeat(4)).split("\n").map((item, key) => {
             return <p key={key}><br />{item}</p>
         });
         return text;
@@ -77,6 +87,8 @@ class App extends Component {
             popup = <Granted />
         } else if (this.state.popUp === "denied"){
             popup = <Denied />
+        } else if (this.state.popUp === "progressBar"){
+            popup = <ProgressBar callBack={()=>this.setState({popUp: "granted"})} />
         }
         const matrix = this.state.matrix ? <InitializeMatrix /> : '';
         return (
@@ -86,9 +98,9 @@ class App extends Component {
                     <span className="blink_me">|</span>
                 </div>
                 {matrix}
-                <div style={{ float:"left", clear: "both" }}
-                     ref={(el) => { this.messagesEnd = el; }}></div>
                 {popup}
+                <div style={{ float:"left", clear: "both" }}
+                     ref={(el) => { this.messagesEnd = el; }} />
             </div>
         );
     }
