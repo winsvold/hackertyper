@@ -8,7 +8,7 @@ Features:
 Shift = clear pop-ups <br />
 Ctrl = toggle Matrix <br />
 
-http://winsvold.github.io/HackerTyper/
+http://winsvold.github.io/hackertyper/
 
 ![HackerTyper](https://github.com/winsvold/HackerTyper/blob/master/wiki/hackerTyper.gif)
 
