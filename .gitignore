@@ -18,6 +18,8 @@
 .babelrc
 .flowconfig
 .eslintrc.js
+/src/css/
+public/
 
 npm-debug.log*
 yarn-debug.log*
@@ -26,3 +28,4 @@ yarn-error.log*
 #ide
 /.idea
 *.iml
+
