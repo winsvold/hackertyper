@@ -34,13 +34,13 @@ class ProgressBar extends Component{
     render(){
         return(
             <div>
-                <div class="darkBackDrop" />
-                <div class="progressBarContainer">
+                <div className="darkBackDrop" />
+                <div className="progressBarContainer">
                     <h2 className="loading">
                         {"Uploading"}
                     </h2>
-                    <div class="progressBar">
-                        <div class="progressBarFill" style={{width:this.state.progress + '%'}} />
+                    <div className="progressBar">
+                        <div className="progressBarFill" style={{width:this.state.progress + '%'}} />
                     </div>
                     <h2>
                         {this.state.progress}%

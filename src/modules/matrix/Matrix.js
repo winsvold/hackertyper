@@ -40,7 +40,6 @@ class Matrix extends Component {
     }
 
     render(){
-        console.log(this.props);
         return(
             <div className="matrix" id="matrix">
                 {this.matrixStriper()}

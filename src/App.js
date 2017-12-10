@@ -1,108 +1,138 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './css/App.css';
-import {codeGetter} from "./resources/codeSample";
-import Granted from "./modules/popup/Granted";
-import Denied from "./modules/popup/Denied";
-import InitializeMatrix from "./modules/matrix/autoScaleMatrix";
-import Matrix from "./modules/matrix/Matrix";
-import ProgressBar from "./modules/progressBar/progressbar";
+import {codeGetter} from './resources/codeSample';
+import InitializeMatrix from './modules/matrix/autoScaleMatrix';
+import {popUpStates} from './modules/popup/PopUp';
+import PopUp from './modules/popup/PopUp';
+import ProgressBar from './modules/progressBar/progressbar';
+import SideMenu from './modules/sidemenu/SideMenu';
+import {instructions} from "./resources/instructions";
+
 
 class App extends Component {
 
     constructor(props){
         super(props);
         this.state ={
-            popUp: "",
-            loadPopUp: "",
-            matrix: false
+            popUp: '',
+            loadPopUp: '',
+            matrix: false,
+            instructionsOpen: false
         };
+        this.toggleContent = this.toggleContent.bind(this);
     }
 
     handleKeyDown(event) {
-        console.log(event);
-        if (event.key === "1") {
+        if (event.key === '1') {
             this.setState({
-                loadPopUp: "granted"
-            })
-        } else if (event.key === "2"){
+                loadPopUp: 'granted'
+            });
+        } else if (event.key === '2'){
             this.setState({
-                loadPopUp: "denied"
-            })
-        } else if (event.key === "3"){
+                loadPopUp: 'denied'
+            });
+        }else if (event.key === '3'){
             this.setState({
-                loadPopUp: "progressBar"
-            })
-        } else if (event.key === "Control"){
+                loadPopUp: 'progressBar'
+            });
+        } else if (event.key === 'Control'){
             this.setState({
                 matrix: !this.state.matrix
-            })
-        } else if (event.key === "Enter"){
+            });
+        } else if (event.key === 'Enter'){
             this.setState({
                 popUp: this.state.loadPopUp
-            })
-        } else if (event.key === "Shift"){
+            });
+        } else if (event.key === 'Shift'){
             this.setState({
-                popUp: ""
-            })
-        } else if (event.key === "Delete" || event.key === "Backspace"){
-            const newSizeOfText = parseInt(this.state.sizeOfText - Math.random() * 8);
+                popUp: ''
+            });
+        } else if (event.key === 'Delete' || event.key === 'Backspace'){
+            const newSizeOfText = parseInt(this.state.sizeOfText - Math.random() * 8, 10);
             this.setState({
                 sizeOfText: newSizeOfText
-            })
+            });
         } else {
-            const newSizeOfText = parseInt(this.state.sizeOfText + Math.random() * 8);
+            const newSizeOfText = parseInt(this.state.sizeOfText + Math.random() * 8, 10);
             this.setState({
                 sizeOfText: newSizeOfText
-            })
+            });
         }
-    };
+    }
 
     componentWillMount(){
-        document.addEventListener("keydown", this.handleKeyDown.bind(this));
+        document.addEventListener('keydown', this.handleKeyDown.bind(this));
         this.setState({
             sizeOfText: 0
-        })
+        });
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener('keydown', this.handleKeyDown.bind(this));
     }
 
     componentDidUpdate() {
         this.scrollToBottom();
     }
 
-    scrollToBottom = () => {
+    scrollToBottom () {
         const node = ReactDOM.findDOMNode(this.messagesEnd);
-        node.scrollIntoView({ behavior: "smooth" });
-    };
+        node.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    createScrollToBottomDiv() {
+        return <div style={{float: 'left', clear: 'both'}}
+            ref={(el) => {
+                this.messagesEnd = el;
+            }}/>;
+    }
 
     getText(){
-        const text = codeGetter(this.state.sizeOfText).split(" ").join("\u00a0").split("\t").join("\u00a0".repeat(4)).split("\n").map((item, key) => {
-            return <p key={key}><br />{item}</p>
-        });
-        return text;
-    };
+        return codeGetter(this.state.sizeOfText).split(' ')
+            .join('\u00a0')
+            .split('\t')
+            .join('\u00a0'.repeat(4))
+            .split('\n')
+            .map((item, key) => {
+                return <p key={key}><br />{item}</p>
+            });
+    }
+
+    createConsole() {
+        return <div className='console'>
+            {this.getText()}
+            <span className='blink_me'>|</span>
+        </div>;
+    }
 
     render() {
-        var popup = '';
-        if(this.state.popUp === "granted"){
-            popup = <Granted />
-        } else if (this.state.popUp === "denied"){
-            popup = <Denied />
-        } else if (this.state.popUp === "progressBar"){
-            popup = <ProgressBar callBack={()=>this.setState({popUp: "granted"})} />
+        let popup = '';
+        if(this.state.popUp === 'granted'){
+            popup = <PopUp popUpState={popUpStates.GRANTED} />;
+        } else if (this.state.popUp === 'denied'){
+            popup = <PopUp popUpState={popUpStates.DENIED} />;
+        } else if (this.state.popUp === 'progressBar'){
+            popup = <ProgressBar callBack={()=>this.setState({popUp: Math.random() < 0.5 ? 'granted' : 'denied'})} />;
         }
         const matrix = this.state.matrix ? <InitializeMatrix /> : '';
+        const sideMenu =
+            <SideMenu content={instructions} open={this.state.instructionsOpen} callback={this.toggleContent }/>;
         return (
-            <div className="App">
-                <div className="console">
-                    {this.getText()}
-                    <span className="blink_me">|</span>
-                </div>
+            <div className='App'>
+                {this.createConsole()}
                 {matrix}
                 {popup}
-                <div style={{ float:"left", clear: "both" }}
-                     ref={(el) => { this.messagesEnd = el; }} />
+                {this.createScrollToBottomDiv()}
+                {sideMenu}
             </div>
         );
+    }
+
+    toggleContent(open) {
+        this.setState({
+            instructionsOpen: open
+        });
     }
 }
 

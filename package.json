@@ -1,10 +1,9 @@
 {
-  "name": "src",
+  "name": "HackerTyper",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://winsvold.github.io/hackertyper/",
   "dependencies": {
-    "less": "^2.7.3",
-    "less-watch-compiler": "^1.9.0",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
@@ -15,6 +14,15 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "less": "less-watch-compiler"
+    "less": "less-watch-compiler",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "eslint": "^4.13.0",
+    "eslint-plugin-react": "^7.5.1",
+    "gh-pages": "^1.1.0",
+    "less": "^2.7.3",
+    "less-watch-compiler": "^1.9.0"
   }
 }

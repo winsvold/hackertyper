@@ -28,7 +28,7 @@ class MatrixStripe extends Component {
     timer(){
         const FRAME_RATE_MIN_TIME = 80;
         const FRAME_RATE_DELTA_TIME = 300;
-        const DELAY = FRAME_RATE_MIN_TIME + parseInt(Math.random() * FRAME_RATE_DELTA_TIME);
+        const DELAY = FRAME_RATE_MIN_TIME + parseInt(Math.random() * FRAME_RATE_DELTA_TIME, 10);
         setInterval(() => this.generateCode(), DELAY);
     }
 
