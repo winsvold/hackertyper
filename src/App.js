@@ -8,6 +8,7 @@ import PopUp from './modules/popup/PopUp';
 import ProgressBar from './modules/progressBar/progressbar';
 import SideMenu from './modules/sidemenu/SideMenu';
 import {instructions} from "./resources/instructions";
+import WakeUp from "./modules/wakeup/WakeUp";
 
 
 class App extends Component {
@@ -20,7 +21,7 @@ class App extends Component {
             matrix: false,
             instructionsOpen: false
         };
-        this.toggleContent = this.toggleContent.bind(this);
+        this.toggleSideMenu = this.toggleSideMenu.bind(this);
     }
 
     handleKeyDown(event) {
@@ -106,6 +107,12 @@ class App extends Component {
         </div>;
     }
 
+    toggleSideMenu(open) {
+        this.setState({
+            instructionsOpen: open
+        });
+    }
+
     render() {
         let popup = '';
         if(this.state.popUp === 'granted'){
@@ -117,22 +124,17 @@ class App extends Component {
         }
         const matrix = this.state.matrix ? <InitializeMatrix /> : '';
         const sideMenu =
-            <SideMenu content={instructions} open={this.state.instructionsOpen} callback={this.toggleContent }/>;
+            <SideMenu content={instructions} open={this.state.instructionsOpen} callback={this.toggleSideMenu }/>;
         return (
             <div className='App'>
                 {this.createConsole()}
                 {matrix}
                 {popup}
+                <WakeUp />
                 {this.createScrollToBottomDiv()}
                 {sideMenu}
             </div>
         );
-    }
-
-    toggleContent(open) {
-        this.setState({
-            instructionsOpen: open
-        });
     }
 }
 

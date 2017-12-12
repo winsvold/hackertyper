@@ -13,3 +13,5 @@ http://winsvold.github.io/hackertyper/
 ![HackerTyper](https://github.com/winsvold/HackerTyper/blob/master/wiki/hackerTyper.gif)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+Inspired by [hackertyper.com](http://hackertyper.com/).
