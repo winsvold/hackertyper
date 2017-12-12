@@ -37,6 +37,10 @@ class App extends Component {
             this.setState({
                 loadPopUp: 'progressBar'
             });
+        }else if (event.key === '4'){
+            this.setState({
+                loadPopUp: 'wakeUp'
+            });
         } else if (event.key === 'Control'){
             this.setState({
                 matrix: !this.state.matrix
@@ -121,6 +125,8 @@ class App extends Component {
             popup = <PopUp popUpState={popUpStates.DENIED} />;
         } else if (this.state.popUp === 'progressBar'){
             popup = <ProgressBar callBack={()=>this.setState({popUp: Math.random() < 0.5 ? 'granted' : 'denied'})} />;
+        }else if (this.state.popUp === 'wakeUp'){
+            popup = <WakeUp />;
         }
         const matrix = this.state.matrix ? <InitializeMatrix /> : '';
         const sideMenu =
@@ -130,7 +136,6 @@ class App extends Component {
                 {this.createConsole()}
                 {matrix}
                 {popup}
-                <WakeUp />
                 {this.createScrollToBottomDiv()}
                 {sideMenu}
             </div>

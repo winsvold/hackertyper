@@ -33,7 +33,7 @@ class ProgressBar extends Component{
 
     render(){
         return(
-            <div>
+            <div className='progressBarWrapper'>
                 <div className="darkBackDrop" />
                 <div className="progressBarContainer">
                     <h2 className="loading">

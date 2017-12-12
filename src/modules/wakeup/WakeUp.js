@@ -9,12 +9,14 @@ class WakeUp extends Component {
         this.state = {
             lineNumber: 0,
             linePosition: 0,
-            outPut: ''
+            outPut: '',
+            blinker: true
         };
-        this.updateText();
     }
     
     componentDidMount(){
+        this.updateText();
+        setInterval(()=>this.blink(),200);
     }
     
     updateText(){
@@ -42,7 +44,7 @@ class WakeUp extends Component {
 
         const endOfText = lines.length === lineNumber;
         if(!endOfText){
-            const timeOut = newLine ? lines[lineNumber].delay : line.interval;
+            const timeOut = newLine ? lines[lineNumber].delay : line.interval * (1.8 - 1.6*Math.random());
             setTimeout(()=>this.updateText(), timeOut);
         }
         this.setState({
@@ -51,12 +53,28 @@ class WakeUp extends Component {
             lineNumber: lineNumber
         });
     }
-    
+
+    blink() { //Hack to make the span work with newLines. For some reason the blinker will prevent text from rendering on the new line, but removing it shortly solves the problem.
+        this.setState({
+            blinker: !this.state.blinker,
+        });
+        this.setState({
+            blinker: !this.state.blinker,
+        });
+    }
+
+    blinker() {
+        return <span className='blink_me'>{this.state.blinker ? '\u25AE' : ''}</span>;
+    }
+
     render(){
-        console.log('Component rendered');
         return(
             <div className='wake-up-container'>
-                {this.state.outPut}
+                <div className='backDrop'></div>
+                <div className='wake-up-console'>
+                    {this.state.outPut}
+                    {this.blinker()}
+                </div>
             </div>
         );
     }
