@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
-import texts from './text';
 
 class WakeUp extends Component {
 
@@ -10,67 +9,116 @@ class WakeUp extends Component {
             lineNumber: 0,
             linePosition: 0,
             outPut: '',
-            blinker: true
+            IBeamBlink: true
         };
     }
     
     componentDidMount(){
-        this.updateText();
-        setInterval(()=>this.blink(),200);
+        const delay = this.props.textComponents[0].delay;
+        setTimeout(() => this.updateText(), delay);
+        setInterval(() => this.blinkIBeamHack(), 200);
     }
     
     updateText(){
-        const lines = texts;
-        const line = lines[this.state.lineNumber];
+        const lineNumber = this.state.lineNumber;
+        const linePos = this.state.linePosition;
+        const textComponents = this.props.textComponents;
+        const currentComponent = textComponents[lineNumber];
 
-        let outPut;
-        if(this.state.linePosition === 0 && line.clear === true){
-            outPut = '';
+        this.updateCurrentOutput(currentComponent, linePos);
+        this.prepareForNextIteration(currentComponent);
+
+        const endOfText = textComponents.length - 1 === lineNumber && this.isAtEndOfLine(currentComponent);
+        if(endOfText) {
+            this.props.callBack();
         } else {
-            outPut = this.state.outPut;
+            this.setTimeoutForNextIteration(textComponents, lineNumber, linePos);
         }
+    }
 
-        outPut += line.text.charAt(this.state.linePosition);
+    setTimeoutForNextIteration(textComponents, lineNumber, linePos) {
+        const currentComponent = textComponents[lineNumber];
+        let delay;
+        if(this.isAtEndOfLine(currentComponent)){
+            delay = this.delayBeforeNextLine(textComponents, lineNumber);
+        } else {
+            delay = this.delayBeforeNextLetter(currentComponent, linePos);
+        }
+        setTimeout(() => this.updateText(), delay);
+    }
 
-        const newLine = line.text.length === this.state.linePosition;
+    delayBeforeNextLetter(currentComponent, linePos) {
+        const randomIrregularity = (1.9 - 1.8 * Math.random());
+        let delay = currentComponent.interval * randomIrregularity;
+        const currentAndNextChar = currentComponent.text.slice(linePos, linePos + 2);
+        if(currentAndNextChar === '. '){
+            delay *= 10;
+        }
+        if(currentAndNextChar === '! '){
+            delay *= 8;
+        }
+        if(currentAndNextChar === ', '){
+            delay *= 2;
+        }
+        return delay;
+    }
+
+    delayBeforeNextLine(textComponents, lineNumber) {
+        return textComponents[lineNumber + 1].delay;
+    }
+
+    prepareForNextIteration(currentComponent) {
+        const goToNextLine = this.isAtEndOfLine(currentComponent);
         let linePosition, lineNumber;
-        if(newLine){
+        if (goToNextLine) {
             linePosition = 0;
             lineNumber = this.state.lineNumber + 1;
         } else {
             linePosition = this.state.linePosition + 1;
             lineNumber = this.state.lineNumber;
         }
-
-        const endOfText = lines.length === lineNumber;
-        if(!endOfText){
-            const timeOut = newLine ? lines[lineNumber].delay : line.interval * (1.8 - 1.6*Math.random());
-            setTimeout(()=>this.updateText(), timeOut);
-        }
         this.setState({
-            outPut: outPut,
             linePosition: linePosition,
             lineNumber: lineNumber
         });
     }
 
-    blink() { //Hack to make the span work with newLines. For some reason the blinker will prevent text from rendering on the new line, but removing it shortly solves the problem.
+    updateCurrentOutput(currentComponent, linePos) {
+        let outPut;
+        const isNewLine = this.state.linePosition === 0;
+        const clearOutput = isNewLine && currentComponent.clear === true;
+        if (clearOutput) {
+            outPut = '';
+        } else {
+            outPut = this.state.outPut;
+        }
+        outPut += currentComponent.text.charAt(linePos);
         this.setState({
-            blinker: !this.state.blinker,
+            outPut: outPut
+        });
+    }
+
+    isAtEndOfLine(currentComponent) {
+        return currentComponent.text.length === this.state.linePosition;
+    }
+
+    blinkIBeamHack() { //Hack to make the span work with newLines. For some reason the IBeamBlink will prevent text from rendering on the new line, but removing it shortly solves the problem.
+        this.setState({
+            IBeamBlink: !this.state.IBeamBlink,
         });
         this.setState({
-            blinker: !this.state.blinker,
+            IBeamBlink: !this.state.IBeamBlink,
         });
     }
 
     blinker() {
-        return <span className='blink_me'>{this.state.blinker ? '\u25AE' : ''}</span>;
+        return <span className='vertical-bar'>{this.state.IBeamBlink ? '*' : ''}</span>; //Hack to make the span work with newLines. Content in the span needs to change to trigger correct rendering.
     }
 
     render(){
         return(
             <div className='wake-up-container'>
-                <div className='backDrop'></div>
+                <div className='backDrop' />
                 <div className='wake-up-console'>
                     {this.state.outPut}
                     {this.blinker()}
@@ -79,5 +127,20 @@ class WakeUp extends Component {
         );
     }
 }
+
+WakeUp.propTypes = {
+    textComponents: PT.arrayOf( PT.shape({
+        delay: PT.number,
+        clear: PT.bool,
+        text: PT.string,
+        interval: PT.number
+    })).isRequired,
+    callBack: PT.func
+};
+
+WakeUp.defaultProps = {
+    callBack: () => {}
+};
+
 
 export default WakeUp;

@@ -3,6 +3,7 @@
 @import "../modules/progressBar/progressBar.less";
 @import "../modules/sidemenu/sidemenu.less";
 @import "../modules/wakeup/wakeup.less";
+@import "../modules/console/console.less";
 
 @fontColor: #fff4c2;
 
@@ -10,19 +11,14 @@
   padding: 2em;
   font-family: monospace;
   color: @fontColor;
-  font-size: 1em;
+  font-size: 1.1em;
   line-height: 1.4em;
   bottom: 0;
   top: 0;
   width: 90%;
   background-color: black;
   position: absolute;
-}
-
-.console {
-  p {
-    display: inline;
-  }
+  overflow: hidden;
 }
 
 .blink_me {

@@ -1,8 +1,4 @@
-export function codeGetter(numberOfLetters) {
-    return code.slice(0,numberOfLetters);
-}
-
-export const code = `import sys, os, re
+export const hackerCode = `import sys, os, re
 from signal import signal, SIGPIPE, SIG_DFL
 
 signal(SIGPIPE, SIG_DFL)

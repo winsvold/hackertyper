@@ -1,0 +1,23 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+class ScrollTo extends Component {
+    constructor(props){
+        super(props);
+    }
+
+    componentDidUpdate(){
+        setInterval(this.scrollToDiv(), 200);
+    }
+
+    scrollToDiv () {
+        const node = ReactDOM.findDOMNode(this.messagesEnd);
+        node.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    render(){
+        return <div style={{float: 'left', clear: 'both'}} ref={(ref) => {this.messagesEnd = ref;}}/>;
+    }
+}
+
+export default ScrollTo;
