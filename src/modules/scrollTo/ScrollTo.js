@@ -16,7 +16,7 @@ class ScrollTo extends Component {
     }
 
     render(){
-        return <div style={{float: 'left', clear: 'both'}} ref={(ref) => {this.messagesEnd = ref;}}/>;
+        return <div className="scroll-to" style={{float: 'left', clear: 'both'}} ref={(ref) => {this.messagesEnd = ref;}}/>;
     }
 }
 

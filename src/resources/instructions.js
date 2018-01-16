@@ -9,7 +9,7 @@ export const instructions =
         <ul>
             <li>1 + Enter = Access Granted </li>
             <li>2 + Enter = Access Denied </li>
-            <li>3 + Enter = Upload Bar then Access Granted</li>
+            <li>3 + Enter = Upload Bar then Access Granted or Denied</li>
             <li>4 + Enter = Wake Up</li>
             <li>Shift = clear pop-ups</li>
             <li>Ctrl = toggle Matrix</li>

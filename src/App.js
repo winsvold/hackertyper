@@ -7,9 +7,10 @@ import PopUp from './modules/popup/PopUp';
 import ProgressBar from './modules/progressBar/progressbar';
 import SideMenu from './modules/sidemenu/SideMenu';
 import {instructions} from "./resources/instructions";
-import WakeUp from "./modules/wakeup/WakeUp";
-import texts from './modules/wakeup/text';
+import WakeUp from "./modules/selfWritingConsole/SelfWritingConsole";
+import texts from './modules/selfWritingConsole/text';
 import Console from "./modules/console/console";
+import { isMobile } from 'react-device-detect';
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
             instructionsOpen: false
         };
         this.toggleSideMenu = this.toggleSideMenu.bind(this);
+        document.title = 'Winsvolds Hacker Typer';
     }
 
     componentWillMount(){
@@ -96,12 +98,17 @@ class App extends Component {
         const matrix = this.state.matrix ? <InitializeMatrix /> : '';
         const sideMenu =
             <SideMenu content={instructions} open={this.state.instructionsOpen} callback={this.toggleSideMenu }/>;
+        const mobileWarning = isMobile ?
+            <div className="mobileWarning">
+                Mobile Device Detected. This app doesn't work on mobile devices.
+            </div> : '';
         return (
             <div className='App'>
                 <Console text={hackerCode} numberOfLetters={this.state.sizeOfText} />
                 {matrix}
                 {popup}
                 {sideMenu}
+                {mobileWarning}
             </div>
         );
     }

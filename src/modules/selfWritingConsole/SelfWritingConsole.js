@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
+import SelfWritingConsoleView from "./SelfWritingConsoleView";
 
-class WakeUp extends Component {
+class SelfWritingConsole extends Component {
 
     constructor(props){
         super(props);
         this.state = {
             lineNumber: 0,
             linePosition: 0,
-            outPut: '',
-            IBeamBlink: true
+            outPut: ''
         };
     }
-    
+
     componentDidMount(){
         const delay = this.props.textComponents[0].delay;
         setTimeout(() => this.updateText(), delay);
-        setInterval(() => this.blinkIBeamHack(), 200);
     }
-    
+
     updateText(){
         const lineNumber = this.state.lineNumber;
         const linePos = this.state.linePosition;
@@ -102,33 +101,12 @@ class WakeUp extends Component {
         return currentComponent.text.length === this.state.linePosition;
     }
 
-    blinkIBeamHack() { //Hack to make the span work with newLines. For some reason the IBeamBlink will prevent text from rendering on the new line, but removing it shortly solves the problem.
-        this.setState({
-            IBeamBlink: !this.state.IBeamBlink,
-        });
-        this.setState({
-            IBeamBlink: !this.state.IBeamBlink,
-        });
-    }
-
-    blinker() {
-        return <span className='vertical-bar'>{this.state.IBeamBlink ? '*' : ''}</span>; //Hack to make the span work with newLines. Content in the span needs to change to trigger correct rendering.
-    }
-
     render(){
-        return(
-            <div className='wake-up-container'>
-                <div className='backDrop' />
-                <div className='wake-up-console'>
-                    {this.state.outPut}
-                    {this.blinker()}
-                </div>
-            </div>
-        );
+        return <SelfWritingConsoleView text={this.state.outPut} />;
     }
 }
 
-WakeUp.propTypes = {
+SelfWritingConsole.propTypes = {
     textComponents: PT.arrayOf( PT.shape({
         delay: PT.number,
         clear: PT.bool,
@@ -138,9 +116,9 @@ WakeUp.propTypes = {
     callBack: PT.func
 };
 
-WakeUp.defaultProps = {
+SelfWritingConsole.defaultProps = {
     callBack: () => {}
 };
 
 
-export default WakeUp;
+export default SelfWritingConsole;
