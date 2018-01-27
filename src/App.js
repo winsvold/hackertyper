@@ -11,11 +11,17 @@ import WakeUp from './modules/selfWritingConsole/SelfWritingConsole';
 import texts from './modules/selfWritingConsole/text';
 import Console from './modules/console/console';
 import { isMobile } from 'react-device-detect';
-
+import ReactGA from 'react-ga';
 
 class App extends React.Component {
 
     constructor(props){
+        ReactGA.initialize('UA-111572952-1');
+        if (isMobile) {
+            ReactGA.pageview('Mobile Warning');
+        } else {
+            ReactGA.pageview('Page View');
+        }
         super(props);
         this.state ={
             sizeOfText: 0,
@@ -54,14 +60,26 @@ class App extends React.Component {
                 loadPopUp: 'wakeUp'
             });
         } else if (event.key === 'Control'){
+            ReactGA.event({
+                category: 'Features',
+                action: 'Toggled Matrix'
+            });
             this.setState({
                 matrix: !this.state.matrix
             });
         } else if (event.key === 'Enter'){
+            ReactGA.event({
+                category: 'Features',
+                action: this.state.loadPopUp
+            });
             this.setState({
                 popUp: this.state.loadPopUp
             });
         } else if (event.key === 'Shift'){
+            ReactGA.event({
+                category: 'Features',
+                action: 'Cleared Feature'
+            });
             this.setState({
                 popUp: ''
             });

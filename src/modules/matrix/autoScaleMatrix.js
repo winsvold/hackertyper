@@ -20,7 +20,6 @@ class InitializeMatrix extends Component {
 
     updateWindowDimensions() {
         this.setState({ width: window.innerWidth, height: window.innerHeight });
-        console.log("Width: ",this.state.width," Height: ",this.state.height);
     }
 
     render() {
