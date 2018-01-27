@@ -22,21 +22,22 @@
 }
 
 .blink_me {
+  @keyframes blinker {
+    50% { opacity: 0; }
+  }
   animation: blinker 1s linear infinite;
 }
 
-@keyframes blinker {
-  50% { opacity: 0; }
-}
 
 .mobileWarning {
+  box-shadow: 0 0 0.3em 0 @fontColor;
   padding: 1em;
   position: fixed;
   bottom: 20vh;
-  margin: auto;
-  width: 70vw;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
   font-size: 1.2em;
-  background-color: rgba(100,100,100,0.5);
-  box-shadow: 0 0 0.2em 0 white;
+  background-color: rgba(100,100,100,0.4);
 }
 

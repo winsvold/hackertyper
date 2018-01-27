@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './css/App.css';
 import { hackerCode } from './resources/codeSample';
 import InitializeMatrix from './modules/matrix/autoScaleMatrix';
@@ -6,14 +6,14 @@ import {popUpStates} from './modules/popup/PopUp';
 import PopUp from './modules/popup/PopUp';
 import ProgressBar from './modules/progressBar/progressbar';
 import SideMenu from './modules/sidemenu/SideMenu';
-import {instructions} from "./resources/instructions";
-import WakeUp from "./modules/selfWritingConsole/SelfWritingConsole";
+import {instructions} from './resources/instructions';
+import WakeUp from './modules/selfWritingConsole/SelfWritingConsole';
 import texts from './modules/selfWritingConsole/text';
-import Console from "./modules/console/console";
+import Console from './modules/console/console';
 import { isMobile } from 'react-device-detect';
 
 
-class App extends Component {
+class App extends React.Component {
 
     constructor(props){
         super(props);
@@ -100,7 +100,7 @@ class App extends Component {
             <SideMenu content={instructions} open={this.state.instructionsOpen} callback={this.toggleSideMenu }/>;
         const mobileWarning = isMobile ?
             <div className="mobileWarning">
-                Mobile Device Detected. This app doesn't work on mobile devices.
+                Mobile Device Detected. This app doesn't work for mobile.
             </div> : '';
         return (
             <div className='App'>
