@@ -2,16 +2,33 @@
   @keyframes opacityFade {
     0% {
       opacity: 0.8;
-      transform: scale(10) rotate(1020deg) translate(-7%, 10%);
+      transform: scale(25) rotate(1020deg) translate(-40%, 60%);
     }
   }
   animation-name: opacityFade;
-  animation-duration: 0.7s;
+  animation-duration: 1s;
+  animation-delay: 1s;
   animation-fill-mode: backwards;
   animation-timing-function: ease;
 }
 
+.make-button-appear-as-link {
+  button, button:focus, button:active {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+    display: inline;
+    outline: none;
+    outline-offset: 0;
+  }
+}
+
 .side-menu-container {
+  .make-button-appear-as-link();
   .btn-open-side-menu {
     position: fixed;
     padding: 1em;
@@ -27,6 +44,13 @@
     &:hover{
       opacity: 0.30;
     }
+
+    button {
+      visibility: visible;
+      height: 30px;
+      width: 30px;
+    }
+
     svg {
       stroke: @fontColor;
       stroke-width: 5
@@ -47,7 +71,7 @@
     transition: 0.5s;
     box-sizing: border-box;
 
-    a {
+    button {
       padding: 10px 10px 10px 10px;
       text-decoration: none;
       font-size: 22px;
@@ -56,7 +80,7 @@
       transition: 0.3s;
     }
 
-    a:hover {
+    button:hover {
       color: #fff;
     }
 

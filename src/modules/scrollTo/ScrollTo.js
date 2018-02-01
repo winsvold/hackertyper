@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class ScrollTo extends Component {
-    constructor(props){
-        super(props);
-    }
-
     componentDidUpdate(){
         setInterval(this.scrollToDiv(), 200);
     }

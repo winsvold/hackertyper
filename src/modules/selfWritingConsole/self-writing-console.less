@@ -19,25 +19,25 @@
     12% { transform: translate(100px, 400px) }
     12.1% { transform: translate(-4px,0) }
     16% { transform: translate(0,0) }
-    30.9% { transform: translate(0,0); background-color: black }
+    30.8% { transform: translate(0,0); background-color: initial }
     31% { transform: translate(70px,200px); background-color: fade(@fontColor,90%) }
-    31.1% { transform: translate(5px,0); background-color: black }
+    31.2% { transform: translate(5px,0); background-color: initial }
     32% { transform: translate(0,0) }
     40.5% { transform: translate(0,0) }
-    68% { transform: translate(5px,0); font-size: 1.2rem; }
+    68.09% { transform: translate(5px,0); font-size: 1.2rem; }
     68.1% { transform: translate(100px,300px); font-size: 4rem; }
-    68.5% { transform: translate(100px,300px); font-size: 4rem; }
-    68.6% { transform: translate(-2px,0); font-size: 1.2rem; }
-    97.8% { transform: translate(0,0) }
-    98% { transform: translate(50px,200px) }
-    98.1% { transform: translate(5px,0) }
+    68.9% { transform: translate(100px,300px); font-size: 4rem; }
+    68.91% { transform: translate(-2px,0); font-size: 1.2rem; }
+    97.8% { transform: translate(0,0); background-color: initial; font-size: 1.2rem; }
+    98% { transform: translate(30000px); background-color: @fontColor; font-size: 3rem; }
+    98.1% { transform: translate(5px,0); background-color: initial; font-size: 1.2rem; }
     99% { transform: translate(0,0) }
     100% { transform: translate(0,0) }
   }
-  animation: 12.2s linear infinite alternate shake;
+  animation: 6.1s linear infinite alternate shake;
 }
 
-.wake-up-container{
+.self-writing-console-container {
   .backDrop{
     .Animation;
     position: fixed;
@@ -47,8 +47,10 @@
     height: 100%;
     width: 100%;
     background-color: black;
+    background-size: 40%;
+    background-repeat: repeat;
   }
-  .wake-up-console {
+  .self-writing-console {
     .ShakeAnimation;
     position: fixed;
     top: 0;
