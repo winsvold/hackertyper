@@ -1,19 +1,29 @@
+.AnimationSideMenuButton() {
+  @keyframes opacityFade {
+    0% {
+      opacity: 0.8;
+      transform: scale(10) rotate(1020deg) translate(-7%, 10%);
+    }
+  }
+  animation-name: opacityFade;
+  animation-duration: 0.7s;
+  animation-fill-mode: backwards;
+  animation-timing-function: ease;
+}
+
 .side-menu-container {
   .btn-open-side-menu {
     position: fixed;
     padding: 1em;
     top: 0;
     right: 0;
-    @keyframes opacityFade {
-    0% { opacity: 0.7; }
-    100% { opacity: 0.15}
-    }
-    opacity: 0.15;
-    animation-name: opacityFade;
-    animation-delay: 2s;
-    animation-duration: 2s;
-    animation-fill-mode: backwards;
     transition: 0.3s;
+
+    .AnimationSideMenuButton();
+    height: 30px;
+    width: 30px;
+    opacity: 0.15;
+
     &:hover{
       opacity: 0.30;
     }

@@ -1,5 +1,45 @@
+.Animation() {
+  @keyframes flash {
+    0% { background-color: fade(black, 20%) }
+    10% { background-color: @fontColor }
+    15% { background-color: black }
+    20% { background-color: fade(@fontColor, 80%) }
+    60% { background-color: black }
+  }
+  animation: 0.3s 2 1s backwards flash;
+}
+
+.ShakeAnimation {
+  @keyframes shake {
+    1.9% { transform: translate(10px,0) }
+    2% { transform: translate(-4px,100px) }
+    2.1% { transform: translate(-4px,0) }
+    6% { transform: translate(0,0) }
+    11.9% { transform: translate(10px,0) }
+    12% { transform: translate(100px, 400px) }
+    12.1% { transform: translate(-4px,0) }
+    16% { transform: translate(0,0) }
+    30.9% { transform: translate(0,0); background-color: black }
+    31% { transform: translate(70px,200px); background-color: fade(@fontColor,90%) }
+    31.1% { transform: translate(5px,0); background-color: black }
+    32% { transform: translate(0,0) }
+    40.5% { transform: translate(0,0) }
+    68% { transform: translate(5px,0); font-size: 1.2rem; }
+    68.1% { transform: translate(100px,300px); font-size: 4rem; }
+    68.5% { transform: translate(100px,300px); font-size: 4rem; }
+    68.6% { transform: translate(-2px,0); font-size: 1.2rem; }
+    97.8% { transform: translate(0,0) }
+    98% { transform: translate(50px,200px) }
+    98.1% { transform: translate(5px,0) }
+    99% { transform: translate(0,0) }
+    100% { transform: translate(0,0) }
+  }
+  animation: 12.2s linear infinite alternate shake;
+}
+
 .wake-up-container{
   .backDrop{
+    .Animation;
     position: fixed;
     top: 0;
     left: 0;
@@ -9,6 +49,7 @@
     background-color: black;
   }
   .wake-up-console {
+    .ShakeAnimation;
     position: fixed;
     top: 0;
     left: 0;

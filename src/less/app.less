@@ -7,6 +7,13 @@
 
 @fontColor: #fff4c2;
 
+.AnimationBackground {
+  @keyframes backgroundFadeIn {
+    0% { background-color: @fontColor }
+  }
+  animation: 0.1s backgroundFadeIn;
+}
+
 .App {
   padding: 2em;
   font-family: monospace;
@@ -15,7 +22,8 @@
   line-height: 1.4em;
   bottom: 0;
   top: 0;
-  width: 90%;
+  width: 100vw;
+  box-sizing: border-box;
   background-color: black;
   position: absolute;
   overflow: hidden;

@@ -15,7 +15,7 @@ function SideMenu({content, open, callback, width}){
         <div className="side-menu-container">
             <span className="btn-open-side-menu" style={showMenuButton()}>
                 <a href="#" onClick={()=>callback(true)}>
-                    <svg width="30" height="30">
+                    <svg viewBox={'0 0 30 30'}>
                         <path d="M0,5 30,5" />
                         <path d="M0,15 30,15" />
                         <path d="M0,25 30,25" />
