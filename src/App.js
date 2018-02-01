@@ -7,11 +7,12 @@ import PopUp from './modules/popup/PopUp';
 import ProgressBar from './modules/progressBar/progressbar';
 import SideMenu from './modules/sidemenu/SideMenu';
 import {instructions} from './resources/instructions';
-import WakeUp from './modules/selfWritingConsole/SelfWritingConsole';
+import SelfWritingConsole from './modules/selfWritingConsole/SelfWritingConsole';
 import texts from './modules/selfWritingConsole/text';
 import Console from './modules/console/console';
 import { isMobile } from 'react-device-detect';
 import ReactGA from 'react-ga';
+import mobileWarningText from "./resources/mobileWarningText";
 
 class App extends React.Component {
 
@@ -111,15 +112,13 @@ class App extends React.Component {
         } else if (this.state.popUp === 'progressBar'){
             popup = <ProgressBar callBack={()=>this.setState({popUp: Math.random() < 0.5 ? 'granted' : 'denied'})} />;
         }else if (this.state.popUp === 'wakeUp'){
-            popup = <WakeUp textComponents={texts} />;
+            popup = <SelfWritingConsole textComponents={texts} />;
         }
         const matrix = this.state.matrix ? <InitializeMatrix /> : '';
         const sideMenu =
             <SideMenu content={instructions} open={this.state.instructionsOpen} callback={this.toggleSideMenu }/>;
         const mobileWarning = isMobile ?
-            <div className="mobileWarning">
-                Mobile Device Detected. This app doesn't work for mobile.
-            </div> : '';
+            <SelfWritingConsole className="mobileWarning" textComponents={mobileWarningText} /> : '';
         return (
             <div className='App'>
                 <Console text={hackerCode} numberOfLetters={this.state.sizeOfText} />

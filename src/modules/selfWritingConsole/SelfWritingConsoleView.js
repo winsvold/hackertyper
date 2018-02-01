@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import ScrollTo from "../scrollTo/ScrollTo";
+import BackgroundImage from '../../img/snow.svg';
 
 class SelfWritingConsoleView extends Component {
 
@@ -33,10 +34,11 @@ class SelfWritingConsoleView extends Component {
     }
 
     render(){
+        const cls=`self-writing-console-container ${this.props.className}`;
         return(
-            <div className='wake-up-container'>
-                <div className='backDrop' />
-                <div className='wake-up-console'>
+            <div className={cls}>
+                <div className='backDrop' /*style={{backgroundImage: `url(${BackgroundImage})`}}*/ />
+                <div className='self-writing-console'>
                     {this.props.text}
                     {this.blinker()}
                     {this.scrollToThis()}
@@ -47,7 +49,12 @@ class SelfWritingConsoleView extends Component {
 }
 
 SelfWritingConsoleView.propTypes = {
-    text: PT.string.isRequired
+    text: PT.string.isRequired,
+    className: PT.string
+};
+
+SelfWritingConsoleView.defaultProps = {
+    className: ''
 };
 
 

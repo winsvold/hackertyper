@@ -102,7 +102,7 @@ class SelfWritingConsole extends Component {
     }
 
     render(){
-        return <SelfWritingConsoleView text={this.state.outPut} />;
+        return <SelfWritingConsoleView className={this.props.className} text={this.state.outPut} />;
     }
 }
 
@@ -113,11 +113,13 @@ SelfWritingConsole.propTypes = {
         text: PT.string,
         interval: PT.number
     })).isRequired,
-    callBack: PT.func
+    callBack: PT.func,
+    className: PT.string
 };
 
 SelfWritingConsole.defaultProps = {
-    callBack: () => {}
+    callBack: () => {},
+    className: ''
 };
 
 
