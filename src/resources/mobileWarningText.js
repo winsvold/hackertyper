@@ -1,13 +1,13 @@
 export const mobileWarningText = [{
-    delay: 2000,
+    delay: 1500,
     clear: true,
     text: 'Mobile Device Detected.',
-    interval: 120
+    interval: 60
 },{
-    delay: 3000,
+    delay: 1500,
     clear: false,
     text: ' This app doesn\'t work for mobile.',
-    interval: 100
+    interval: 120
 }];
 
 export default mobileWarningText;

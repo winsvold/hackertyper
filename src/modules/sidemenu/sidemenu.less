@@ -1,13 +1,10 @@
 .AnimationSideMenuButton() {
-  @keyframes opacityFade {
-    0% {
-      opacity: 0.8;
-      transform: scale(25) rotate(1020deg) translate(-40%, 60%);
-    }
+  @keyframes keyFrames {
+    0% { transform: translate(0, 0) scale(0) rotate(0deg);}
+    80% { transform: translate(-20px, 20px) scale(2) rotate(180deg); opacity: 1; }
   }
-  animation-name: opacityFade;
-  animation-duration: 1s;
-  animation-delay: 1s;
+  animation-name: keyFrames;
+  animation-duration: 2s;
   animation-fill-mode: backwards;
   animation-timing-function: ease;
 }
