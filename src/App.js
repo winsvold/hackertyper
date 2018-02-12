@@ -12,7 +12,7 @@ import texts from './modules/selfWritingConsole/text';
 import Console from './modules/console/console';
 import { isMobile } from 'react-device-detect';
 import ReactGA from 'react-ga';
-import mobileWarningText from "./resources/mobileWarningText";
+import mobileWarningText from './resources/mobileWarningText';
 
 class App extends React.Component {
 
@@ -32,7 +32,6 @@ class App extends React.Component {
             instructionsOpen: false
         };
         this.toggleSideMenu = this.toggleSideMenu.bind(this);
-        document.title = 'Winsvolds Hacker Typer';
     }
 
     componentWillMount(){

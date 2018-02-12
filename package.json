@@ -2,14 +2,15 @@
   "name": "HackerTyper",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://winsvold.github.io/hackertyper/build/",
+  "homepage": "http://winsvold.github.io/hackertyper/",
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-device-detect": "^0.1.0",
     "react-dom": "^16.1.1",
     "react-ga": "^2.4.1",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "react-svg": "^2.2.11"
   },
   "scripts": {
     "start": "react-scripts start",
