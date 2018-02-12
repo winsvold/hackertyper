@@ -1,10 +1,11 @@
 .AnimationSideMenuButton() {
   @keyframes keyFrames {
-    0% { transform: translate(0, 0) scale(0) rotate(0deg);}
-    80% { transform: translate(-20px, 20px) scale(2) rotate(180deg); opacity: 1; }
+    0% { transform: rotate(1080deg); opacity: 0}
+    5% { transform: rotate(1160deg); width: 200vw; }
+    70% { opacity: 0.5 }
   }
   animation-name: keyFrames;
-  animation-duration: 2s;
+  animation-duration: 0.7s;
   animation-fill-mode: backwards;
   animation-timing-function: ease;
 }
@@ -34,7 +35,6 @@
     transition: 0.3s;
 
     .AnimationSideMenuButton();
-    height: 30px;
     width: 30px;
     opacity: 0.15;
 
@@ -44,8 +44,8 @@
 
     button {
       visibility: visible;
-      height: 30px;
-      width: 30px;
+      height: 100%;
+      width: 100%;
     }
 
     svg {
