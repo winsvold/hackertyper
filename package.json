@@ -9,8 +9,9 @@
     "react-device-detect": "^0.1.0",
     "react-dom": "^16.1.1",
     "react-ga": "^2.4.1",
-    "react-scripts": "1.0.17",
-    "react-svg": "^2.2.11"
+    "react-scripts": "3.0.0",
+    "react-svg": "^2.2.11",
+    "snyk": "^1.158.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -19,7 +20,9 @@
     "eject": "react-scripts eject",
     "less": "less-watch-compiler",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "eslint": "^4.13.0",
@@ -27,5 +30,6 @@
     "gh-pages": "^1.1.0",
     "less": "^2.7.3",
     "less-watch-compiler": "^1.9.0"
-  }
+  },
+  "snyk": true
 }
