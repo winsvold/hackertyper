@@ -9,7 +9,7 @@
     "react-device-detect": "^0.1.0",
     "react-dom": "^16.1.1",
     "react-ga": "^2.4.1",
-    "react-scripts": "1.0.17",
+    "react-scripts": "3.0.0",
     "react-svg": "^2.2.11"
   },
   "scripts": {
