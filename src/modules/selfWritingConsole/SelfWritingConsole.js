@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import SelfWritingConsoleView from "./SelfWritingConsoleView";
+import './self-writing-console.less';
 
 class SelfWritingConsole extends Component {
 

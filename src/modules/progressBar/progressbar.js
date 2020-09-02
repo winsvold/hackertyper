@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
+import './progressBar.less';
 
 class ProgressBar extends Component{
     constructor(props){

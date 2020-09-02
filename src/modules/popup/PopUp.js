@@ -1,5 +1,6 @@
 import React from 'react';
 import PT from 'prop-types';
+import './popup.less';
 
 export const popUpStates = {
     GRANTED: {

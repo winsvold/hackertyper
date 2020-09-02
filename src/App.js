@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/App.css';
+import './app.less';
 import { hackerCode } from './resources/codeSample';
 import InitializeMatrix from './modules/matrix/autoScaleMatrix';
 import {popUpStates} from './modules/popup/PopUp';

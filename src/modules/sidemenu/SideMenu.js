@@ -1,5 +1,6 @@
 import React from 'react';
 import PT from 'prop-types';
+import './sidemenu.less';
 
 function SideMenu({content, open, callback, width}){
 

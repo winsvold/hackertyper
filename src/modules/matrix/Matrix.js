@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import MatrixStripe from "./MatrixStripe";
+import './matrix.less';
 
 function erIkkeInitialisert(entry) {
     return entry === false;
