@@ -14,6 +14,7 @@ import { isMobile } from "react-device-detect";
 import ReactGA from "react-ga";
 import mobileWarningText from "./resources/mobileWarningText";
 import mvpText from "./resources/mvpText";
+import { eggumCode } from "./resources/eggumCode";
 
 type PopUps = "granted" | "denied" | "progressBar" | "wakeUp" | "mvp" | undefined;
 
@@ -23,6 +24,7 @@ function App() {
   const [loadedPopUp, setLoadedPopUp] = useState<PopUps>();
   const [matrix, setMatrix] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [useEggumCode, setUseEggumCode] = useState(false);
 
   useEffect(() => {
     ReactGA.initialize("UA-111572952-1");
@@ -45,6 +47,8 @@ function App() {
         setLoadedPopUp("wakeUp");
       } else if (event.key === "5") {
         setLoadedPopUp("mvp");
+      } else if (event.key === "0") {
+        setUseEggumCode(!useEggumCode);
       } else if (event.key === "Control") {
         ReactGA.event({
           category: "Features",
@@ -67,7 +71,8 @@ function App() {
         const newSizeOfText = Math.round(sizeOfText - Math.random() * 8);
         setSizeOfText(newSizeOfText >= 0 ? newSizeOfText : 0);
       } else {
-        setSizeOfText(Math.round(sizeOfText + Math.random() * 8));
+        const newSize = eggumCode ? sizeOfText + 1 : Math.round(sizeOfText + Math.random() * 8);
+        setSizeOfText(newSize);
       }
     };
 
@@ -79,7 +84,7 @@ function App() {
 
   return (
     <div className="App">
-      <Console text={hackerCode} numberOfLetters={sizeOfText} />
+      <Console text={useEggumCode ? eggumCode : hackerCode} numberOfLetters={sizeOfText} />
       {matrix && <InitializeMatrix />}
       <SideMenu content={instructions} open={menuOpen} callback={() => setMenuOpen(!menuOpen)} />
       {isMobile && <SelfWritingConsole className="mobileWarning" textFragments={mobileWarningText} />}
