@@ -72,7 +72,7 @@ function App() {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [loadedPopUp, sizeOfText, matrix]);
+  }, [handleKeyDown]);
 
   return (
     <div className="App">
