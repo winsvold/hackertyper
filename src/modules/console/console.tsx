@@ -1,5 +1,4 @@
 import React from "react";
-import PT from "prop-types";
 import ScrollTo from "../scrollTo/ScrollTo";
 import "./console.less";
 

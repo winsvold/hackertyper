@@ -80,7 +80,7 @@ function App() {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [loadedPopUp, matrix, sizeOfText]);
+  }, [loadedPopUp, matrix, sizeOfText, useEggumCode]);
 
   return (
     <div className="App">
