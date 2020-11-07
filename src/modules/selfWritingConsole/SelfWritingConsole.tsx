@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SelfWritingConsoleView from "./SelfWritingConsoleView";
 import "./self-writing-console.less";
-
-export interface TextFragment {
-  delay: number;
-  clear: boolean;
-  text: string;
-  interval: number;
-}
+import { TextFragment } from "./textFragment";
 
 interface Props {
-  textComponents: TextFragment[];
+  textFragments: TextFragment[];
   callBack?: Function;
   className?: string;
 }
@@ -19,7 +13,7 @@ function SelfWritingConsole(props: Props) {
   const [lineNumber, setLineNumber] = useState(0);
   const [linePosition, setLinePosition] = useState(0);
   const [outPut, setOutPut] = useState("");
-  const currentComponent = props.textComponents[lineNumber];
+  const currentComponent = props.textFragments[lineNumber];
   const isAtEndOfLine = currentComponent.text.length === linePosition;
 
   const updateCurrentOutput = () => {
@@ -51,10 +45,13 @@ function SelfWritingConsole(props: Props) {
     return delay;
   };
 
-  const delayBeforeNextLine = () => props.textComponents[lineNumber + 1].delay;
-
   const getTimeoutForNextIteration = () => {
-    const delay = isAtEndOfLine ? delayBeforeNextLine() : delayBeforeNextLetter();
+    const first = linePosition === 0 && lineNumber === 0;
+    if (first) {
+      return currentComponent.delay;
+    }
+    const nextLine = props.textFragments[lineNumber + 1];
+    const delay = isAtEndOfLine ? nextLine.delay : delayBeforeNextLetter();
     return Math.round(delay);
   };
 
@@ -64,7 +61,7 @@ function SelfWritingConsole(props: Props) {
   };
 
   useEffect(() => {
-    const endOfText = props.textComponents.length - 1 === lineNumber && isAtEndOfLine;
+    const endOfText = props.textFragments.length - 1 === lineNumber && isAtEndOfLine;
     if (endOfText) {
       props.callBack && props.callBack();
     } else {

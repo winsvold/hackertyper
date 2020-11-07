@@ -13,6 +13,7 @@ import Console from "./modules/console/console";
 import { isMobile } from "react-device-detect";
 import ReactGA from "react-ga";
 import mobileWarningText from "./resources/mobileWarningText";
+import mvpText from "./resources/mvpText";
 
 type PopUps = "granted" | "denied" | "progressBar" | "wakeUp" | "mvp" | undefined;
 
@@ -81,9 +82,9 @@ function App() {
       <Console text={hackerCode} numberOfLetters={sizeOfText} />
       {matrix && <InitializeMatrix />}
       <SideMenu content={instructions} open={menuOpen} callback={() => setMenuOpen(!menuOpen)} />
-      {isMobile && <SelfWritingConsole className="mobileWarning" textComponents={mobileWarningText} />}
-      {popUp === "wakeUp" && <SelfWritingConsole textComponents={wakeUpTexts} />}
-      {popUp === "mvp" && <SelfWritingConsole textComponents={wakeUpTexts} />}
+      {isMobile && <SelfWritingConsole className="mobileWarning" textFragments={mobileWarningText} />}
+      {popUp === "wakeUp" && <SelfWritingConsole textFragments={wakeUpTexts} />}
+      {popUp === "mvp" && <SelfWritingConsole textFragments={mvpText} />}
       {popUp === "progressBar" && <ProgressBar callBack={() => setPopUp(Math.random() < 0.5 ? "granted" : "denied")} />}
       {popUp === "denied" && <PopUp popUpState={popUpStates.DENIED} />}
       {popUp === "granted" && <PopUp popUpState={popUpStates.GRANTED} />}

@@ -1,4 +1,4 @@
-import { TextFragment } from "../modules/selfWritingConsole/SelfWritingConsole";
+import { TextFragment } from "../modules/selfWritingConsole/textFragment";
 
 export const mobileWarningText: TextFragment[] = [
   {

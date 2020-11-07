@@ -1,4 +1,4 @@
-import { TextFragment } from "./SelfWritingConsole";
+import { TextFragment } from "./textFragment";
 
 export const wakeUpTexts: TextFragment[] = [
   {
