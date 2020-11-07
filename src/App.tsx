@@ -71,7 +71,7 @@ function App() {
         const newSizeOfText = Math.round(sizeOfText - Math.random() * 8);
         setSizeOfText(newSizeOfText >= 0 ? newSizeOfText : 0);
       } else {
-        const newSize = eggumCode ? sizeOfText + 1 : Math.round(sizeOfText + Math.random() * 8);
+        const newSize = eggumCode ? sizeOfText + 2 : Math.round(sizeOfText + Math.random() * 8);
         setSizeOfText(newSize);
       }
     };
