@@ -1,4 +1,4 @@
-export const eggumCode = `M   V   P
+export const eggumCode = `M   V   P 
 
 Minimum Viable Product
 
@@ -8,5 +8,4 @@ Minimally Visitable People
 from a
 Magnificent Viable Planet
 
-M   V   P
-`;
+M   V   P`;
