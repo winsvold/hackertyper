@@ -1,4 +1,6 @@
-export const wakeUpTexts = [
+import { TextFragment } from "./SelfWritingConsole";
+
+export const wakeUpTexts: TextFragment[] = [
   {
     delay: 2000,
     clear: true,
