@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dd11c152597d8d52134c527f4fd85e0e",
+    "revision": "52e549277b0853115b1f8d41808d1ad6",
     "url": "/hackertyper/index.html"
   },
   {
-    "revision": "77a39008f84102f49aae",
+    "revision": "3df9e0a7ce7d8ea07ddb",
     "url": "/hackertyper/static/css/main.3d03cc46.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hackertyper/static/js/2.152d8174.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "77a39008f84102f49aae",
-    "url": "/hackertyper/static/js/main.dd349460.chunk.js"
+    "revision": "3df9e0a7ce7d8ea07ddb",
+    "url": "/hackertyper/static/js/main.2346cb8d.chunk.js"
   },
   {
     "revision": "770c515913017ac5f7ea",
