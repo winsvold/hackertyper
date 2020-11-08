@@ -3,20 +3,18 @@ import ScrollTo from "../scrollTo/ScrollTo";
 import "./console.less";
 
 export function ConsoleText(props: { text: string }) {
-  const paragraphs = props.text
-    .split(" ")
-    .join("\u00a0")
-    .split("\t")
-    .join("\u00a0".repeat(4))
-    .split("\n")
-    .map((item, key) => (
-      <p key={key}>
-        <br />
-        {item}
-      </p>
-    ));
+  const paragraphs = props.text.split("\n").map((item, key) => (
+    <span key={key}>
+      <br />
+      {item}
+    </span>
+  ));
 
   return <>{paragraphs}</>;
+}
+
+function perserveSpaces(text: string) {
+  return text.split(" ").join("\u00a0").split("\t").join("\u00a0".repeat(4));
 }
 
 interface Props {
@@ -25,10 +23,11 @@ interface Props {
 }
 
 function Console({ text, numberOfLetters }: Props) {
+  const parsedText = perserveSpaces(text.slice(0, numberOfLetters));
   return (
     <div>
       <div className="console">
-        <ConsoleText text={text.slice(0, numberOfLetters)} />
+        <ConsoleText text={parsedText} />
         <span className="blink_me">|</span>
       </div>
       <ScrollTo />

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PT from "prop-types";
 import ScrollTo from "../scrollTo/ScrollTo";
-import { ConsoleText } from "../console/console";
+import { ConsoleText } from "../console/Console";
 // import BackgroundImage from '../../img/snow.svg';
 
 class SelfWritingConsoleView extends Component {

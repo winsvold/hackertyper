@@ -9,7 +9,7 @@ import SideMenu from "./modules/sidemenu/SideMenu";
 import { instructions } from "./resources/instructions";
 import SelfWritingConsole from "./modules/selfWritingConsole/SelfWritingConsole";
 import wakeUpTexts from "./modules/selfWritingConsole/wakeUpTexts";
-import Console from "./modules/console/console";
+import Console from "./modules/console/Console";
 import { isMobile } from "react-device-detect";
 import ReactGA from "react-ga";
 import mobileWarningText from "./resources/mobileWarningText";

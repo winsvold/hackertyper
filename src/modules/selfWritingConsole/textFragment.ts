@@ -5,11 +5,16 @@ export interface TextFragment {
   interval: number;
 }
 
-export function createTextFragment(text: string, speed: number, delay: number, clear?: boolean): TextFragment {
+export function createTextFragment(
+  text: string,
+  speed?: number,
+  delay?: number,
+  options?: { clear?: boolean; newLine?: boolean }
+): TextFragment {
   return {
-    text: text,
-    interval: speed,
-    delay: delay,
-    clear: !!clear,
+    text: options?.newLine ? "\n" + text : text,
+    interval: speed || 60,
+    delay: delay || 800,
+    clear: !!options?.clear,
   };
 }
