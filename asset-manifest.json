@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/hackertyper/static/css/main.3d03cc46.chunk.css",
-    "main.js": "/hackertyper/static/js/main.1ff350c1.chunk.js",
-    "main.js.map": "/hackertyper/static/js/main.1ff350c1.chunk.js.map",
+    "main.js": "/hackertyper/static/js/main.dd349460.chunk.js",
+    "main.js.map": "/hackertyper/static/js/main.dd349460.chunk.js.map",
     "runtime-main.js": "/hackertyper/static/js/runtime-main.a53ea096.js",
     "runtime-main.js.map": "/hackertyper/static/js/runtime-main.a53ea096.js.map",
     "static/js/2.152d8174.chunk.js": "/hackertyper/static/js/2.152d8174.chunk.js",
     "static/js/2.152d8174.chunk.js.map": "/hackertyper/static/js/2.152d8174.chunk.js.map",
     "index.html": "/hackertyper/index.html",
-    "precache-manifest.427d3d4f3790290b27938c6d1df71d0a.js": "/hackertyper/precache-manifest.427d3d4f3790290b27938c6d1df71d0a.js",
+    "precache-manifest.2c7816999d2c60c721adb9a3de1ce41d.js": "/hackertyper/precache-manifest.2c7816999d2c60c721adb9a3de1ce41d.js",
     "service-worker.js": "/hackertyper/service-worker.js",
     "static/css/main.3d03cc46.chunk.css.map": "/hackertyper/static/css/main.3d03cc46.chunk.css.map",
     "static/js/2.152d8174.chunk.js.LICENSE.txt": "/hackertyper/static/js/2.152d8174.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.a53ea096.js",
     "static/js/2.152d8174.chunk.js",
     "static/css/main.3d03cc46.chunk.css",
-    "static/js/main.1ff350c1.chunk.js"
+    "static/js/main.dd349460.chunk.js"
   ]
 }
