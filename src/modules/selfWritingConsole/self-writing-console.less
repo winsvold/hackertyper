@@ -40,6 +40,11 @@
 }
 
 .self-writing-console-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  max-height: 100vh;
+  overflow: hidden;
   .backDrop{
     .Animation;
     position: fixed;
@@ -52,13 +57,11 @@
     background-size: 40%;
     background-repeat: repeat;
   }
+
   .self-writing-console {
     .ShakeAnimation;
-    position: fixed;
-    top: 0;
-    left: 0;
     margin-right: 0;
-    padding: 1em 2em 2em;
+    padding: 1.5em 2em 1em;
     font-size: 1.2rem;
     .vertical-bar{
       display: inline-flex;

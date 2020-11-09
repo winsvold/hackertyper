@@ -1,11 +1,11 @@
 import React from "react";
-import ScrollTo from "../scrollTo/ScrollTo";
-import "./console.less";
+import KeepInViewPort from "../scrollTo/KeepInViewPort";
+import styled from "styled-components";
 
 export function ConsoleText(props: { text: string }) {
   const paragraphs = props.text.split("\n").map((item, key) => (
     <span key={key}>
-      <br />
+      {key > 0 && <br />}
       {item}
     </span>
   ));
@@ -22,16 +22,20 @@ interface Props {
   numberOfLetters: number;
 }
 
+const Style = styled.div`
+  padding: 2em 2em 1em;
+`;
+
 function Console({ text, numberOfLetters }: Props) {
   const parsedText = perserveSpaces(text.slice(0, numberOfLetters));
   return (
-    <div>
-      <div className="console">
+    <Style>
+      <div>
         <ConsoleText text={parsedText} />
         <span className="blink_me">|</span>
       </div>
-      <ScrollTo />
-    </div>
+      <KeepInViewPort />
+    </Style>
   );
 }
 
