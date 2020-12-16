@@ -13,10 +13,8 @@ import Console from "./modules/console/Console";
 import { isMobile } from "react-device-detect";
 import ReactGA from "react-ga";
 import mobileWarningText from "./resources/mobileWarningText";
-import mvpText from "./resources/mvpText";
-import { eggumCode } from "./resources/eggumCode";
 
-type PopUps = "granted" | "denied" | "progressBar" | "wakeUp" | "mvp" | undefined;
+type PopUps = "granted" | "denied" | "progressBar" | "wakeUp" | undefined;
 
 function App() {
   const [sizeOfText, setSizeOfText] = useState(0);
@@ -24,7 +22,6 @@ function App() {
   const [loadedPopUp, setLoadedPopUp] = useState<PopUps>();
   const [matrix, setMatrix] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [useEggumCode, setUseEggumCode] = useState(false);
 
   useEffect(() => {
     ReactGA.initialize("UA-111572952-1");
@@ -45,10 +42,6 @@ function App() {
         setLoadedPopUp("progressBar");
       } else if (event.key === "4") {
         setLoadedPopUp("wakeUp");
-      } else if (event.key === "5") {
-        setLoadedPopUp("mvp");
-      } else if (event.key === "0") {
-        setUseEggumCode(!useEggumCode);
       } else if (event.key === "Control") {
         ReactGA.event({
           category: "Features",
@@ -71,7 +64,7 @@ function App() {
         const newSizeOfText = Math.round(sizeOfText - Math.random() * 8);
         setSizeOfText(newSizeOfText >= 0 ? newSizeOfText : 0);
       } else {
-        const newSize = eggumCode ? sizeOfText + 2 : Math.round(sizeOfText + Math.random() * 8);
+        const newSize = Math.round(sizeOfText + Math.random() * 8);
         setSizeOfText(newSize);
       }
     };
@@ -80,16 +73,15 @@ function App() {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [loadedPopUp, matrix, sizeOfText, useEggumCode]);
+  }, [loadedPopUp, matrix, sizeOfText]);
 
   return (
     <div className="App">
-      <Console text={useEggumCode ? eggumCode : hackerCode} numberOfLetters={sizeOfText} />
+      <Console text={hackerCode} numberOfLetters={sizeOfText} />
       {matrix && <InitializeMatrix />}
       <SideMenu content={instructions} open={menuOpen} callback={() => setMenuOpen(!menuOpen)} />
       {isMobile && <SelfWritingConsole className="mobileWarning" textFragments={mobileWarningText} />}
       {popUp === "wakeUp" && <SelfWritingConsole textFragments={wakeUpTexts} />}
-      {popUp === "mvp" && <SelfWritingConsole textFragments={mvpText} />}
       {popUp === "progressBar" && <ProgressBar callBack={() => setPopUp(Math.random() < 0.5 ? "granted" : "denied")} />}
       {popUp === "denied" && <PopUp popUpState={popUpStates.DENIED} />}
       {popUp === "granted" && <PopUp popUpState={popUpStates.GRANTED} />}
