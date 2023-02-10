@@ -14,7 +14,7 @@ jobs:
         with:
           persist-credentials: false
       - name: npm install 🚛
-        run: npm install
+        run: npm ci
       - name: Build 🔧
         run: npm run build
       - name: Deploy 🚀
