@@ -11,7 +11,6 @@ import SelfWritingConsole from "./modules/selfWritingConsole/SelfWritingConsole"
 import wakeUpTexts from "./modules/selfWritingConsole/wakeUpTexts";
 import Console from "./modules/console/Console";
 import { isMobile } from "react-device-detect";
-import ReactGA from "react-ga";
 import mobileWarningText from "./resources/mobileWarningText";
 
 type PopUps = "granted" | "denied" | "progressBar" | "wakeUp" | undefined;
@@ -24,15 +23,6 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    ReactGA.initialize("UA-111572952-1");
-    if (isMobile) {
-      ReactGA.pageview("Mobile Warning");
-    } else {
-      ReactGA.pageview("Page View");
-    }
-  }, []);
-
-  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "1") {
         setLoadedPopUp("granted");
@@ -43,22 +33,10 @@ function App() {
       } else if (event.key === "4") {
         setLoadedPopUp("wakeUp");
       } else if (event.key === "Control") {
-        ReactGA.event({
-          category: "Features",
-          action: "Toggled Matrix",
-        });
         setMatrix(!matrix);
       } else if (event.key === "Enter") {
-        ReactGA.event({
-          category: "Features",
-          action: loadedPopUp || "",
-        });
         setPopUp(loadedPopUp);
       } else if (event.key === "Shift") {
-        ReactGA.event({
-          category: "Features",
-          action: "Cleared Feature",
-        });
         setPopUp(undefined);
       } else if (event.key === "Delete" || event.key === "Backspace") {
         const newSizeOfText = Math.round(sizeOfText - Math.random() * 8);
